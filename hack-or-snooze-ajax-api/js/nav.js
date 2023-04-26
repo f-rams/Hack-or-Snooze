@@ -30,6 +30,7 @@ $navLogin.on('click', navLoginClick);
 function updateNavOnLogin() {
   console.debug('updateNavOnLogin');
   $('.main-nav-links').show();
+  putStoriesOnPage();
   $navLogin.hide();
   $navLogOut.show();
   $loginForm.hide();

@@ -127,12 +127,6 @@ class User {
    * - name: the user's full name
    */
 
-  // this.stories = this.stories.filter(
-  //   (value) => value.storyId !== storyId
-  // );
-  // console.log(currentUser.ownStories);
-  // console.log(response);
-
   async turnFavorite(storyId) {
     const response = await axios.post(
       `${BASE_URL}/users/${this.username}/favorites/${storyId}`,

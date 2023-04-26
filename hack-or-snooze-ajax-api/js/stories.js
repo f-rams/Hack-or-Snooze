@@ -114,12 +114,16 @@ function putStoriesOnPage() {
   $allStoriesList.empty();
   let $story;
   for (let story of storyList.stories) {
-    if (
-      currentUser.favorites.some((value) => value.storyId === story.storyId)
-    ) {
-      $story = generateStoryMarkup(story);
-      $story.find('.fa-star').toggleClass('fa-regular fa-solid');
-    } else {
+    if (currentUser !== undefined) {
+      if (
+        currentUser.favorites.some((value) => value.storyId === story.storyId)
+      ) {
+        $story = generateStoryMarkup(story);
+        $story.find('.fa-star').toggleClass('fa-regular fa-solid');
+      } else {
+        $story = generateStoryMarkup(story);
+      }
+    } else if (currentUser === undefined) {
       $story = generateStoryMarkup(story);
     }
     $allStoriesList.append($story);
