@@ -58,7 +58,7 @@ function addFavorites() {
  * Returns the markup for the story.
  */
 
-function ToFavorite(e) {
+function toFavorite(e) {
   e.preventDefault();
   if ($(this).children().hasClass('fa-regular')) {
     const targetStoryId = $(this).parent().get(0).id;
@@ -77,6 +77,8 @@ function ToFavorite(e) {
   }
 }
 
+$(document).on('click', '.favorite-icon', toFavorite);
+
 async function deleteStory(e) {
   const targetStoryId = $(this).parent().get(0).id;
   if ($(this).siblings().get(4).id === currentUser.username) {
@@ -89,11 +91,7 @@ async function deleteStory(e) {
 
 $(document).on('click', '.delete-icon', deleteStory);
 
-$(document).on('click', '.favorite-icon', ToFavorite);
-
 function generateStoryMarkup(story) {
-  // console.debug("generateStoryMarkup", story);
-
   const hostName = story.getHostName();
   return $(`
      <li id="${story.storyId}"><a href="#" style="margin-right: 8px" class="delete-icon"><i class="fa-solid fa-trash-can"></i></a><a href="#" class="favorite-icon"><i class="fa-regular fa-star"></i></a>
@@ -134,7 +132,6 @@ function putStoriesOnPage() {
 
 async function postStory(e) {
   e.preventDefault();
-  console.log('this is a test');
   const author = $('#author-text').val();
   const title = $('#title-text').val();
   const url = $('#url-text').val();
